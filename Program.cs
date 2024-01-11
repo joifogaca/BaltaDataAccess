@@ -16,7 +16,7 @@ class Program
         {
 
 
-            var categories = connection.Query<Category>("Select [Id], [Title] FROM [Category]");  // O método Query sempre retorna uma lista
+            var categories = connection.Query<Category>("Select [Id], [Title] FROM [Category]");
             Console.WriteLine("Acessando com Dapper");
 
             foreach (var Category in categories)
@@ -29,17 +29,10 @@ class Program
 
     static void usandoAdoNET()
     {
-        //Microsoft.Data.SqlClient
+
         const string connectionString = "Server=localhost,1433;Database=balta;User ID=sa;Password=1q2w3e4r@#$;Trusted_Connection=False; TrustServerCertificate=True;";
-        /*  var connection = new SqlConnection();
-         connection.Open();
-         //Fazer todos os comandos de uma vez, nao abrir e fechar para cada comando;
-         connection.Close(); // Não esquecer de fechar a conexão, mas o garbage colletor vai fechar, mais é melhor o programador ter proatividade
-         connection.Dispose(); // destroi o objeto, será necessario abrir a conexão de novo
-  */
 
-
-        using (var connection = new SqlConnection(connectionString)) // Já fecha a conexão ao terminar de usar
+        using (var connection = new SqlConnection(connectionString))
         {
             Console.WriteLine("Conectado");
             connection.Open();
@@ -50,9 +43,9 @@ class Program
                 command.CommandType = System.Data.CommandType.Text;
                 command.CommandText = "Select [Id], [Title] FROM [Category]";
 
-                var reader = command.ExecuteReader(); // Leitura
+                var reader = command.ExecuteReader();
 
-                while (reader.Read()) // SqlDAtaReader é um cursor só vai para frente
+                while (reader.Read())
                 {
                     Console.WriteLine($"{reader.GetGuid(0)} - {reader.GetString(1)}");
                 }
