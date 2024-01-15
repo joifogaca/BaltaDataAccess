@@ -32,3 +32,10 @@
 
 >Como o que o Dapper só faz esse mapeamento para o objeto, ele é considerado uma forma mais performática que outros ORM
 
+>Evitar fazer processamentos dentro do using, para não ocupar a conexão com processamentos desnecessários, se o código poder ser criado fora do using é melhor
+
+Usar **@** antes da query permite que façamos quebra de linha.
+
+### Cuidados com SQLInjection
+
+>SQLInjection é um ataque que permite criação e manipulação de dados que são enviadas diretamente para o banco. Para se previnir não devemos concatenar string na consultas, invés disso usarmos parâmetros.
